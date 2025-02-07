@@ -516,11 +516,6 @@ def analyze_outcome_var(uuid_tracker):
     """)
 
     # Map popup_id to descriptive labels
-    popup_map = {
-        '4217': '1 (Worthiness)',
-        '4221': '2 (Numbers)',
-        '4223': '3 (Control)'
-    }
     uuid_tracker['popup_label'] = uuid_tracker['popup_id'].map(popup_map)
 
     # Ensure outcome variables are numeric and handle missing values
@@ -681,7 +676,6 @@ def balance_check(df, datetime_cols):
             else:
                 st.write("No data available for this variable.")
     return group_stats, pairwise_results_df
-    
 
 
 
@@ -716,7 +710,6 @@ uuid_tracker = generate_user_data(clean_tracker)
 # very important step
 uuid_tracker = uuid_tracker[uuid_tracker['popup_id'].notna()]
 
-
 # Section 1: User flows
 summary_stats = calculate_statistics(uuid_tracker)
 analyze_user_flow(summary_stats)
@@ -730,4 +723,3 @@ group_stats, pairwise_results = balance_check(
     uuid_tracker, 
     datetime_cols = ['first_session_start_time', 'average_session_start_time', 'last_session_start_time'])
 
-# %%
